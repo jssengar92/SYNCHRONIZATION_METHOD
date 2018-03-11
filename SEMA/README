@@ -1,0 +1,30 @@
+ SEMAPHORE
+------------
+
+Semaphore is a synchronization technique.
+semaphore is a special variable maintained inside kernel on which two operation can be performed.
+Wait and Signal.
+Before entering inside critical section[ protected part of code ] process checks the semaphore variable.
+If it is zero process waits for the semaphore.
+If it is Greater then ZERO it decrement the variable and enters into critical section.
+Upon leaving the critical section process again Increment the semaphore variable while signalling all the 
+waiting process to wake up fron the wait-queue.
+
+----------------
+| P1 | P2 | P3 | ------------------------------->P0
+----------------	 			|
+ Wait Queue					V
+ 			------------------------------------------------- Decrement the semaphore variable. if ( > 0)
+			|						|
+			|						|
+			|	CRITICAL SECTION OF THE CODE		|
+			|						|
+			|						|
+			-------------------------------------------------Increment the semaphore variable.(wake up the waiting process)
+
+System calls:
+------------
+Semget() to get the semaphore identifier.
+semctl() to control the semaphore operation.
+semop()  to perform wait and signal operation.
+
